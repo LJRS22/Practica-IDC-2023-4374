@@ -41,3 +41,77 @@
                 </li>
             </ul>
         </section>
+        <section id="formulario-cita">
+            <h2>Formulario de Solicitud de Cita</h2>
+            <p>Completa todos los campos requeridos para programar tu consulta o estudio especializado.</p>
+
+            <form action="#" method="post">
+                <fieldset>
+                    <legend>1. Datos Personales del Paciente</legend>
+
+                    <div>
+                        <label for="nombre">Nombre completo (mínimo 5 caracteres):</label>
+                        <input type="text" id="nombre" name="nombre" required minlength="5" maxlength="80" placeholder="Ej. Luis Johansel Santana">
+                    </div>
+
+                    <div>
+                        <label for="correo">Correo electrónico de contacto:</label>
+                        <input type="email" id="correo" name="correo" required placeholder="paciente@ejemplo.do">
+                    </div>
+
+                    <div>
+                        <label for="telefono">Teléfono móvil (formato 809-000-0000):</label>
+                        <input type="tel" id="telefono" name="telefono" required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="809-555-0199">
+                    </div>
+
+                    <div>
+                        <label for="edad">Edad del paciente (años):</label>
+                        <input type="number" id="edad" name="edad" required min="12" max="99" value="22">
+                    </div>
+
+                    <div>
+                        <label for="orden-medica">Adjuntar indicación médica o carnet de ARS (opcional):</label>
+                        <input type="file" id="orden-medica" name="orden_medica" accept=".pdf,.jpg,.png">
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>2. Detalles de la Consulta y Programación</legend>
+
+                    <div>
+                        <label for="especialidad">Selecciona el servicio requerido:</label>
+                        <select id="especialidad" name="especialidad" required>
+                            <option value="">-- Elige un estudio o consulta --</option>
+                            <optgroup label="Rendimiento Deportivo">
+                                <option value="ergoespirometria">Prueba de Esfuerzo con Gases (VO2 máx.)</option>
+                                <option value="biomecanica">Biomecánica de Ciclismo 3D</option>
+                                <option value="nutricion">Evaluación Antropométrica y Nutrición</option>
+                            </optgroup>
+                            <optgroup label="Clínica y Rehabilitación">
+                                <option value="fisioterapia">Sesión de Fisioterapia y Descarga Muscular</option>
+                                <option value="cardiologia">Evaluación Cardiológica Completa</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="fecha-cita">Fecha deseada para la cita:</label>
+                        <input type="date" id="fecha-cita" name="fecha_cita" required min="2026-11-03" max="2027-06-30">
+                    </div>
+
+                    <div>
+                        <label for="hora-cita">Hora preferida (8:00 a. m. a 6:00 p. m.):</label>
+                        <input type="time" id="hora-cita" name="hora_cita" required min="08:00" max="18:00">
+                    </div>
+
+                    <div>
+                        <label for="dolor">Nivel actual de fatiga o molestia física (0 = Ninguna, 10 = Severa):</label>
+                        <input type="range" id="dolor" name="nivel_dolor" min="0" max="10" value="2">
+                    </div>
+
+                    <p><strong>Modalidad de pago o cobertura:</strong></p>
+                    <div>
+                        <input type="radio" id="mod-ars" name="modalidad" value="ars" required>
+                        <label for="mod-ars">Con seguro médico (ARS)</label>
+                    </div>
+                    <div>
