@@ -306,3 +306,48 @@ footer {
     font-size: 14px;
     color: var(--text-muted);
 }
+/* ==========================================
+   6. DISEÑO ADAPTABLE (Media Queries)
+   ========================================== */
+@media (max-width: 768px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+    
+    nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: var(--brand-navy);
+        padding: 10px 0;
+    }
+
+    nav ul.activo {
+        display: flex;
+    }
+
+    .menu-hamburguesa {
+        display: block;
+        background: none;
+        border: 1px solid #fff;
+        color: #fff;
+        padding: 6px 10px;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+}
+
+@media (min-width: 769px) {
+    .menu-hamburguesa {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 15px;
+    }
+    header {
+        padding: 12px;
+    }
+}
