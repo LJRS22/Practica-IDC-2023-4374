@@ -272,3 +272,37 @@ button[type="submit"], .btn-accion {
 button[type="submit"]:hover {
     background-color: var(--mint);
 }
+
+/* ==========================================
+   5. BOTÓN MODO OSCURO Y MULTIMEDIA
+   ========================================== */
+.btn-tema {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #FFFFFF;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: var(--transition);
+}
+
+.btn-tema:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+img, video, iframe {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+footer {
+    background-color: var(--card-bg);
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    font-size: 14px;
+    color: var(--text-muted);
+}
