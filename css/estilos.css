@@ -46,3 +46,74 @@ body {
     line-height: 1.55;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+/* ==========================================
+   2. ESTRUCTURA Y LAYOUT (Flexbox y Grid)
+   ========================================== */
+header {
+    background-color: var(--brand-navy);
+    color: #FFFFFF;
+    padding: 20px;
+    border-bottom: 5px solid var(--mint);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header .nav-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+nav a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: var(--transition);
+}
+
+nav a:hover, nav a[aria-current="page"] {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+main {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+}
+
+/* Páginas de ancho completo (Servicios y Contacto) */
+body:not(.has-sidebar) main {
+    grid-template-columns: 1fr;
+}
+
+section, article, aside {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    transition: var(--transition);
+}
+
+aside {
+    height: fit-content;
+}
