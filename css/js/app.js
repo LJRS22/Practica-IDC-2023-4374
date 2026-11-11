@@ -127,3 +127,78 @@ document.addEventListener("DOMContentLoaded", () => {
         buscador.addEventListener("input", filtrarServicios);
         filtroCat.addEventListener("change", filtrarServicios);
     }
+    // ==========================================
+    // 5. VALIDACIÓN AVANZADA DE FORMULARIO (contacto.html)
+    // ==========================================
+    const formulario = document.querySelector("form");
+    if (formulario) {
+        // Preparar spans de error dinámicamente
+        const campos = formulario.querySelectorAll("input, select, textarea");
+        campos.forEach(campo => {
+            if (campo.type !== "submit" && campo.type !== "radio" && campo.type !== "checkbox") {
+                const spanError = document.createElement("span");
+                spanError.classList.add("error");
+                spanError.id = `error-${campo.id}`;
+                campo.setAttribute("aria-describedby", spanError.id);
+                campo.after(spanError);
+
+                // Borrar error al escribir
+                campo.addEventListener("input", () => {
+                    campo.classList.remove("invalido");
+                    spanError.textContent = "";
+                });
+            }
+        });
+
+        formulario.addEventListener("submit", (e) => {
+            e.preventDefault();
+            let hayErrores = false;
+
+            // Regla propia 1: Validar Teléfono Dominicano (809, 829, 849 + 7 dígitos)
+            const inputTel = document.querySelector("#telefono");
+            const spanTel = document.querySelector("#error-telefono");
+            const regexTel = /^(809|829|849)[0-9]{7}$/;
+            if (inputTel && !regexTel.test(inputTel.value.replace(/-/g, ""))) {
+                inputTel.classList.add("invalido");
+                spanTel.textContent = "El teléfono debe ser un número válido de RD (809, 829 u 849 seguido de 7 dígitos).";
+                hayErrores = true;
+            }
+
+            // Regla propia 2: Validar que la fecha no sea en el pasado
+            const inputFecha = document.querySelector("#fecha-cita");
+            const spanFecha = document.querySelector("#error-fecha-cita");
+            if (inputFecha) {
+                const fechaSeleccionada = new Date(inputFecha.value);
+                const hoy = new Date();
+                hoy.setHours(0,0,0,0);
+                if (fechaSeleccionada < hoy) {
+                    inputFecha.classList.add("invalido");
+                    spanFecha.textContent = "La fecha de la cita no puede ser en el pasado.";
+                    hayErrores = true;
+                }
+            }
+
+            // Regla propia 3: Motivo de consulta con al menos 15 caracteres
+            const txtSintomas = document.querySelector("#sintomas");
+            const spanSintomas = document.querySelector("#error-sintomas");
+            if (txtSintomas && txtSintomas.value.trim().length < 15) {
+                txtSintomas.classList.add("invalido");
+                spanSintomas.textContent = "Por favor detalla el motivo con al menos 15 caracteres.";
+                hayErrores = true;
+            }
+
+            if (!hayErrores) {
+                // Mensaje de éxito sin alert()
+                const divExito = document.createElement("div");
+                divExito.style.cssText = "background:var(--green-soft); border:2px solid var(--brand-green); padding:16px; border-radius:8px; margin-top:20px;";
+                divExito.innerHTML = `
+                    <h3 style="color:var(--brand-green);">¡Cita solicitada con éxito!</h3>
+                    <p>Hemos registrado tu solicitud correctamente. Te contactaremos al teléfono indicado para confirmar.</p>
+                `;
+                formulario.reset();
+                formulario.after(divExito);
+                setTimeout(() => divExito.remove(), 7000);
+            }
+        });
+    }
+});
