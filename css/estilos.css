@@ -117,3 +117,58 @@ section, article, aside {
 aside {
     height: fit-content;
 }
+
+/* ==========================================
+   3. TIPOGRAFÍA Y COMPONENTES
+   ========================================== */
+h1, h2, h3 {
+    font-family: var(--font-display);
+    color: var(--brand-navy);
+    margin-bottom: 12px;
+}
+
+body.oscuro h1, body.oscuro h2, body.oscuro h3 {
+    color: var(--brand-green);
+}
+
+p, ul, ol, dl {
+    margin-bottom: 14px;
+    color: var(--text-main);
+}
+
+ul, ol {
+    padding-left: 20px;
+}
+
+/* Catálogo dinámico Grid */
+.grid-catalogo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.tarjeta-servicio {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: var(--transition);
+}
+
+.tarjeta-servicio:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px rgba(0,0,0,0.08);
+    border-color: var(--mint);
+}
+
+.tarjeta-servicio img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
