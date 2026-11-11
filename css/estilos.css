@@ -172,3 +172,103 @@ ul, ol {
     border-radius: 8px;
     margin-bottom: 12px;
 }
+
+/* ==========================================
+   4. TABLAS Y FORMULARIOS
+   ========================================== */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin: 15px 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+    text-align: left;
+}
+
+th, td {
+    padding: 12px 14px;
+    border: 1px solid var(--border-color);
+}
+
+thead th {
+    background-color: var(--brand-navy);
+    color: #FFFFFF;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(69, 145, 110, 0.05);
+}
+
+caption {
+    font-weight: bold;
+    padding: 8px;
+    color: var(--text-muted);
+}
+
+fieldset {
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+legend {
+    font-family: var(--font-display);
+    font-weight: bold;
+    color: var(--brand-navy);
+    padding: 0 8px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+input, select, textarea {
+    padding: 10px 14px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--bg-primary);
+    color: var(--text-main);
+    font: inherit;
+    transition: var(--transition);
+}
+
+input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: none;
+    border-color: var(--mint);
+    box-shadow: 0 0 0 3px rgba(69, 145, 110, 0.2);
+}
+
+input.invalido, select.invalido, textarea.invalido {
+    border-color: var(--red-error);
+    background-color: var(--red-soft);
+}
+
+.error {
+    font-size: 13px;
+    color: var(--red-error);
+    font-weight: bold;
+    min-height: 18px;
+}
+
+button[type="submit"], .btn-accion {
+    background-color: var(--brand-green);
+    color: #FFFFFF;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+button[type="submit"]:hover {
+    background-color: var(--mint);
+}
