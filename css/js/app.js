@@ -46,3 +46,84 @@ document.addEventListener("DOMContentLoaded", () => {
         pAno.textContent = `© ${new Date().getFullYear()} Salud Integral Plus. Todos los derechos reservados.`;
         f.appendChild(pAno);
     });
+    // ==========================================
+    // 4. CONTENIDO DINÁMICO DEL CATÁLOGO (servicios.html)
+    // ==========================================
+    const contenedorCatalogo = document.querySelector("#catalogo-dinamico");
+    if (contenedorCatalogo) {
+        const serviciosDatos = [
+            { id: 1, nombre: "Prueba de Esfuerzo (VO2 máx)", categoria: "fisiologia", precio: 4800, desc: "Evaluación cardiorrespiratoria con gases espirados.", img: "https://placehold.co/400x250/253C66/FFFFFF?text=VO2+Max" },
+            { id: 2, nombre: "Biomecánica Ciclismo 3D", categoria: "fisiologia", precio: 5500, desc: "Ajuste milimétrico de posición sobre la bicicleta.", img: "https://placehold.co/400x250/45916E/FFFFFF?text=Biomecanica" },
+            { id: 3, nombre: "Sesión de Fisioterapia Avanzada", categoria: "rehabilitacion", precio: 1800, desc: "Terapia miofascial, punción seca y presoterapia.", img: "https://placehold.co/400x250/2F855A/FFFFFF?text=Fisioterapia" },
+            { id: 4, nombre: "Evaluación Antropométrica ISAK", categoria: "nutricion", precio: 2500, desc: "Composición corporal y plan de hidratación.", img: "https://placehold.co/400x250/253C66/FFFFFF?text=Nutricion" },
+            { id: 5, nombre: "Ecocardiograma Doppler", categoria: "cardiologia", precio: 3200, desc: "Estudio morfológico y funcional cardíaco.", img: "https://placehold.co/400x250/B42335/FFFFFF?text=Cardiologia" },
+            { id: 6, nombre: "Paquete Integral Atleta Pro", categoria: "paquetes", precio: 15130, desc: "Incluye los 5 servicios anteriores con 15% de descuento.", img: "https://placehold.co/400x250/45916E/FFFFFF?text=Pack+Pro" }
+        ];
+
+        // Crear controles de búsqueda y filtro
+        const divControles = document.createElement("div");
+        divControles.style.cssText = "display:flex; gap:12px; margin-bottom:20px; flex-wrap:wrap;";
+        divControles.innerHTML = `
+            <input type="text" id="buscador" placeholder="Buscar servicio..." style="flex:1; min-width:200px;">
+            <select id="filtro-cat" style="padding:10px;">
+                <option value="todos">Todas las categorías</option>
+                <option value="fisiologia">Fisiología y Biomecánica</option>
+                <option value="rehabilitacion">Rehabilitación</option>
+                <option value="nutricion">Nutrición</option>
+                <option value="cardiologia">Cardiología</option>
+                <option value="paquetes">Paquetes</option>
+            </select>
+            <span id="contador-resultados" style="align-self:center; font-weight:bold;"></span>
+        `;
+        contenedorCatalogo.before(divControles);
+
+        const pintarTarjetas = (lista) => {
+            contenedorCatalogo.innerHTML = "";
+            contenedorCatalogo.className = "grid-catalogo";
+            
+            if (lista.length === 0) {
+                contenedorCatalogo.innerHTML = "<p>No se encontraron servicios coincidentes.</p>";
+                document.querySelector("#contador-resultados").textContent = "Mostrando 0 servicios";
+                return;
+            }
+
+            lista.forEach(s => {
+                const tarjeta = document.createElement("div");
+                tarjeta.classList.add("tarjeta-servicio");
+                const precioFormateado = s.precio.toLocaleString("es-DO", { style: "currency", currency: "DOP" });
+                tarjeta.innerHTML = `
+                    <div>
+                        <img src="${s.img}" alt="${s.nombre}">
+                        <h3>${s.nombre}</h3>
+                        <p>${s.desc}</p>
+                    </div>
+                    <div>
+                        <p style="font-weight:bold; color:var(--brand-green); margin-top:10px;">${precioFormateado}</p>
+                    </div>
+                `;
+                contenedorCatalogo.appendChild(tarjeta);
+            });
+            document.querySelector("#contador-resultados").textContent = `Mostrando ${lista.length} de ${serviciosDatos.length} servicios`;
+        };
+
+        pintarTarjetas(serviciosDatos);
+
+        // Eventos de filtro y búsqueda
+        const buscador = document.querySelector("#buscador");
+        const filtroCat = document.querySelector("#filtro-cat");
+
+        const filtrarServicios = () => {
+            const texto = buscador.value.toLowerCase();
+            const cat = filtroCat.value;
+
+            const filtrados = serviciosDatos.filter(s => {
+                const coincideTexto = s.nombre.toLowerCase().includes(texto) || s.desc.toLowerCase().includes(texto);
+                const coincideCat = cat === "todos" || s.categoria === cat;
+                return coincideTexto && coincideCat;
+            });
+            pintarTarjetas(filtrados);
+        };
+
+        buscador.addEventListener("input", filtrarServicios);
+        filtroCat.addEventListener("change", filtrarServicios);
+    }
