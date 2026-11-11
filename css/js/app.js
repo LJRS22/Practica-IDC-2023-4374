@@ -37,3 +37,12 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem("isw311-modo-oscuro", esOscuro ? "activo" : "inactivo");
         });
     }
+    // ==========================================
+    // 3. AÑO AUTOMÁTICO EN EL FOOTER
+    // ==========================================
+    const footers = document.querySelectorAll("footer");
+    footers.forEach(f => {
+        const pAno = document.createElement("p");
+        pAno.textContent = `© ${new Date().getFullYear()} Salud Integral Plus. Todos los derechos reservados.`;
+        f.appendChild(pAno);
+    });
