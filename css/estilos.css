@@ -1,0 +1,48 @@
+/* ==========================================
+   1. VARIABLES Y CONFIGURACIÓN GLOBAL
+   ========================================== */
+:root {
+    --bg-primary: #F1F5F3;
+    --card-bg: #FFFFFF;
+    --text-main: #17202E;
+    --text-muted: #5A6474;
+    --border-color: #D5DEDA;
+    --brand-navy: #253C66;
+    --brand-green: #2F855A;
+    --green-soft: #DDF3E6;
+    --mint: #45916E;
+    --red-error: #B42335;
+    --red-soft: #FBE3E6;
+    --font-sans: "Atkinson Hyperlegible", Arial, sans-serif;
+    --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+    --radius: 12px;
+    --transition: all 0.3s ease;
+}
+
+body.oscuro {
+    --bg-primary: #0F1519;
+    --card-bg: #182128;
+    --text-main: #E7EEF2;
+    --text-muted: #A3B0BA;
+    --border-color: #2C3A44;
+    --brand-navy: #9DB8F0;
+    --brand-green: #5FD39A;
+    --green-soft: #163A29;
+    --red-error: #FF8A99;
+    --red-soft: #43191F;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-main);
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.55;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
